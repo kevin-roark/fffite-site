@@ -1,6 +1,7 @@
 
 var renderer = new frampton.Renderer({
-  mediaConfig: mediaConfig
+  mediaConfig: mediaConfig,
+  audioFadeDuration: 80
 });
 
 var shortestToLongest = frampton.mediaArranger.durationSortedMedia(mediaConfig.videos);
