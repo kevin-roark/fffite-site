@@ -1,31 +1,36 @@
 
 var renderer = new frampton.Renderer({
   mediaConfig: mediaConfig,
-  audioFadeDuration: 80
+  audioFadeDuration: 300,
+  videoFadeDuration: 300
 });
 
-var shortVideos = mediaConfig.videos.filter(function(video) {
-  return video.duration < 1.0;
+var longVideos = mediaConfig.videos.filter(function(video) {
+  return video.duration > 0.5;
 });
 
 var firstSegment = newSequencedSegment();
 renderer.scheduleSegmentRender(firstSegment, 3000);
 
 function newSequencedSegment() {
-  var segments = [];
+  var videos = frampton.util.shuffle(longVideos);
 
-  var videos = frampton.util.shuffle(shortVideos);
+  var segments = [];
   videos.forEach((video) => {
-    var segment = new frampton.VideoSegment(video);
+    var segment = new frampton.VideoSegment({
+      filename: video.filename,
+      duration: video.duration
+    });
     segments.push(segment);
   });
 
   var sequencedSegment = new frampton.SequencedSegment({
     segments: segments,
+    videoOffset: -renderer.videoFadeDuration / 1000, // start each video half second before current video ends
     onStart: () => {
       // once it starts, schedule the next loop with a new shuffle
       var newSegment = newSequencedSegment();
-      var offset = sequencedSegment.msDuration();
+      var offset = sequencedSegment.msDuration() - renderer.videoFadeDuration;
       renderer.scheduleSegmentRender(newSegment, offset);
     }
   });
