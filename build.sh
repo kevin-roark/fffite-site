@@ -23,7 +23,7 @@ do
 
     # run frampton on combo
     ../frampton/src/cli/web-bundle.js scores/$score.js media_config/$config.json --out ./ --onlyscore
-    cp js/build.js films/$combo/js
+    mv js/build.js films/$combo/js
 
   done
 done
