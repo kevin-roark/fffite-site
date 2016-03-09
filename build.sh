@@ -7,14 +7,16 @@ configs=(
   "bourne" "bourne_fight" "bourne_run" "bourne_chase"
 )
 
+# clear existing build
+rm -rf films/*
+rm -f template/film-links.txt
+touch template/film-links.txt
+
 for config in "${configs[@]}"
 do
   for score in "${scores[@]}"
   do
     combo=$config"__"$score
-
-    # clear existing build
-    rm -rf films/$combo
 
     # make new folder and copy template
     mkdir films/$combo
@@ -24,6 +26,9 @@ do
     # run frampton on combo
     ../frampton/src/cli/web-bundle.js scores/$score.js media_config/$config.json --out ./ --onlyscore
     mv js/build.js films/$combo/js
+
+    # add link to film-links.txt
+    echo '<a href="/films/'$combo'/" id="'$combo'-link" class="'$config'-link '$score'-link"></a>' >> template/film-links.txt
 
   done
 done
