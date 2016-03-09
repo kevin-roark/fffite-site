@@ -5,7 +5,7 @@ var renderer = new frampton.Renderer({
 });
 
 var shortVideos = mediaConfig.videos.filter(function(video) {
-  return video.duration < 1.0;
+  return video.duration < 0.7;
 });
 
 var firstSegment = newSequencedSegment();
