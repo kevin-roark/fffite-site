@@ -102,6 +102,9 @@
 })();
 
 function scoreDescriptionForID(id) {
+  if (id.indexOf('seq') >= 0) {
+    return 'Length Sequence Patterns';
+  }
   if (id.indexOf('length') >= 0) {
     return 'Length Pyramid';
   }
@@ -111,7 +114,7 @@ function scoreDescriptionForID(id) {
   if (id.indexOf('short') >= 0) {
     return 'Rapid Clips';
   }
-  if (id.indexOf('length') >= 0) {
+  if (id.indexOf('fades') >= 0) {
     return 'Continuous Fades';
   }
   return 'Continuous Shuffle';

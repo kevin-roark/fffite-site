@@ -1,5 +1,5 @@
 
-scores=( "continuous" "continuous-fades" "continuous-short-clips" "length-pyramid" "volume-pyramid" )
+scores=( "continuous" "continuous-fades" "continuous-short-clips" "length-pyramid" "volume-pyramid" "length-sequences" )
 configs=(
   "bourne_1_1" "bourne_1_2" "bourne_1_3" "bourne_1_4" "bourne_1_5"
   "bourne_2_1" "bourne_2_2" "bourne_2_4"
