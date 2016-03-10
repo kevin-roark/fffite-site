@@ -55,21 +55,29 @@
     }
   });
 
-  var scatterVariation = {x: 400, y: 340};
+  scatter();
 
-  scatterTokens(b1Tokens, {x: window.innerWidth / 2, y: 180});
-  scatterTokens(b2Tokens, {x: window.innerWidth - 220, y: window.innerHeight - 200});
-  scatterTokens(b3Tokens, {x: 220, y: window.innerHeight - 200});
-  scatterTokens(mixedBTokens, {x: window.innerWidth / 2, y: window.innerHeight / 2 + 150});
+  $(window).resize(function() {
+    scatter();
+  });
 
-  function scatterTokens(tokens, centroid) {
-    for (var i = 0; i < tokens.length; i++) {
-      var x = Math.min(window.innerWidth - 50, Math.max(0, centroid.x + Math.round((Math.random() - 0.5) * scatterVariation.x)));
-      var y = Math.min(window.innerHeight - 50, Math.max(0, centroid.y + Math.round((Math.random() - 0.5) * scatterVariation.y)));
+  function scatter() {
+    var scatterVariation = {x: 500, y: 500};
 
-      var $token = tokens[i];
-      $token.css('left', x + 'px');
-      $token.css('top', y + 'px');
+    scatterTokens(b1Tokens, {x: window.innerWidth / 2, y: 250});
+    scatterTokens(b2Tokens, {x: 250, y: window.innerHeight - 300});
+    scatterTokens(b3Tokens, {x: window.innerWidth - 250, y: window.innerHeight - 300});
+    scatterTokens(mixedBTokens, {x: window.innerWidth / 2, y: window.innerHeight / 2 + 150});
+
+    function scatterTokens(tokens, centroid) {
+      for (var i = 0; i < tokens.length; i++) {
+        var x = Math.min(window.innerWidth - 50, Math.max(0, centroid.x + Math.round((Math.random() - 0.5) * scatterVariation.x)));
+        var y = Math.min(window.innerHeight - 50, Math.max(0, centroid.y + Math.round((Math.random() - 0.5) * scatterVariation.y)));
+
+        var $token = tokens[i];
+        $token.css('left', x + 'px');
+        $token.css('top', y + 'px');
+      }
     }
   }
 
@@ -83,7 +91,6 @@
     var id = $token.attr('id');
     var scoreDescription = scoreDescriptionForID(id);
     var mediaDescription = mediaDescriptionForID(id);
-
     $tokenDescriptionEl.text(mediaDescription + ' — ' + scoreDescription);
   });
   $tokens.mouseout(function() {
@@ -96,6 +103,24 @@
       setTimeout(hideSiteDirections, 2000);
     }
   });
+
+  // token jitter
+  setInterval(function() {
+    var $token = $($tokens[Math.floor(Math.random()*$tokens.length)]);
+    if ($token.hasClass('dragging')) {
+      return;
+    }
+
+    var dx = (Math.random() - 0.5) * 5;
+    var dy = (Math.random() - 0.5) * 5;
+
+    var offset = $token.offset();
+    var x =  Math.min(window.innerWidth - 50, Math.max(0, offset.left + dx));
+    var y = Math.min(window.innerHeight - 50, Math.max(0, offset.top + dy));
+
+    $token.css('left', x + 'px');
+    $token.css('top', y + 'px');
+  }, 16);
 
   drag($tokens);
 
@@ -215,10 +240,12 @@ function drag($elements, options) {
     trackingState.offsetFromMouse.y = thisOffset.top - ev.pageY;
   });
 
-  $elements.mouseup(function() {
+  $(document).mouseup(function() {
     trackingState.$activeElement.removeClass('dragging');
     trackingState.$activeElement = null;
+  });
 
+  $elements.mouseup(function() {
     trackingState.lastTotalClickTime = (new Date()) - trackingState.mouseDownTime;
   });
 

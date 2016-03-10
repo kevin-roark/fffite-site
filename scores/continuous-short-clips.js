@@ -3,8 +3,7 @@ var renderer = new frampton.Renderer({
   mediaConfig: mediaConfig,
   videoSourceMaker: function(filename) {
     return '/media/bourne/' + filename;
-  },
-  audioFadeDuration: 80
+  }
 });
 
 var shortVideos = mediaConfig.videos.filter(function(video) {
