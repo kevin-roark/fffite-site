@@ -31,7 +31,7 @@ do
     mv js/build.js films/$combo/js
 
     # add link to film-links.txt
-    echo '<a href="/films/'$combo'/" id="'$combo'-link" class="token-link '$config'-link '$score'-link">fffight.site '$combo' film</a>' >> template/film-links.txt
+    echo '<a target="blank" href="/films/'$combo'/" id="'$combo'-link" class="token-link '$config'-link '$score'-link">fffight.site '$combo' film</a>' >> template/film-links.txt
 
   done
 done

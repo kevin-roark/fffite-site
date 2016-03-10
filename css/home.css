@@ -104,110 +104,115 @@ body {
       margin: 15px 5px;
     }
 
-.token-link {
+.area-marker {
+  position: absolute;
+  width: 200px;
+}
+  #bourne-1-marker {
+    top: 10px;
+    left: 50%; margin-left: -100px;
+  }
+  #bourne-2-marker {
+    bottom: 10px;
+    left: 10px;
+  }
+  #bourne-3-marker {
+    bottom: 10px;
+    right: 10px;
+  }
+  #bourne-mixed-marker {
+    left: 50%; margin-left: -100px;
+    top: 50%;
+  }
 
+.token-description {
+  position: fixed;
+  left: 0; width: 100%; text-align: center;
+  top: 40%;
+
+  font-family: sans-serif;
+  font-size: 72px;
+}
+
+.token-link {
+  position: absolute;
+  cursor: pointer;
+  width: 42px; height: 42px;
+  border-radius: 2px;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .continuous-link {
-
+  background-color: rgb(255, 75, 37);
+  box-shadow: 1px 1px 5px 2px rgba(255, 75, 37, 0.6);
 }
 
 .continuous-fades-link {
-
+  background-color: rgb(37, 255, 150);
+  box-shadow: 1px 1px 5px 2px rgba(37, 255, 150, 0.6);
 }
 
 .continuous-short-clips-link {
-
+  background-color: rgb(94, 37, 255);
+  box-shadow: 1px 1px 5px 2px rgba(94, 37, 255, 0.6);
 }
 
 .length-pyramid-link {
-
+  background-color: rgb(37, 144, 255);
+  box-shadow: 1px 1px 5px 2px rgba(37, 144, 255, 0.6);
 }
 
 .volume-pyramid-link {
-
+  background-color: rgb(255, 37, 122);
+  box-shadow: 1px 1px 5px 2px rgba(255, 37, 122, 0.6);
 }
 
-.bourne_1_1-link {
-
+.bourne_1_1-link, .bourne_2_1-link, .bourne_3_4_fight-link {
+  background-image: url('/media/home/knife1.png');
 }
 
-.bourne_1_2-link {
-
+.bourne_1_2-link, .bourne_2_4-link, .bourne_3_6-link {
+  background-image: url('/media/home/chase-1.png');
 }
 
-.bourne_1_3-link {
-
+.bourne_1_3-link, .bourne_3_4-link {
+  background-image: url('/media/home/knife-2.png');
 }
 
-.bourne_1_4-link {
-
+.bourne_1_4-link, .bourne_2_2-link, .bourne_3_1-link {
+  background-image: url('/media/home/run-1.png');
 }
 
-.bourne_1_5-link {
-
-}
-
-.bourne_2_1-link {
-
-}
-
-.bourne_2_2-link {
-
-}
-
-.bourne_2_4-link {
-
-}
-
-.bourne_3_1-link {
-
+.bourne_1_5-link, .bourne_fight-link {
+  background-image: url('/media/home/knife-3.png');
 }
 
 .bourne_3_3-link {
-
+  background-image: url('/media/home/run-2.png');
 }
 
-.bourne_3_4-link {
-
-}
-
-.bourne_3_4_fight-link {
-
-}
-
-.bourne_3_4_run-link {
-
-}
-
-.bourne_3_6-link {
-
+.bourne_3_4_run-link, .bourne_run-link {
+  background-image: url('/media/home/run-3.png');
 }
 
 .bourne_1-link {
-
+  background-image: url('/media/home/mixed-1.png');
 }
 
 .bourne_2-link {
-
+  background-image: url('/media/home/mixed-2.png');
 }
 
 .bourne_3-link {
-
-}
-
-.bourne_run-link {
-
+  background-image: url('/media/home/mixed-3.png');
 }
 
 .bourne_chase-link {
-
-}
-
-.bourne_fight-link {
-
+  background-image: url('/media/home/chase-3.png');
 }
 
 .bourne-link {
-
+  background-image: url('/media/home/mixed-4.png');
 }
