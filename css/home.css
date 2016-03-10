@@ -107,6 +107,12 @@ body {
 .area-marker {
   position: absolute;
   width: 200px;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
   #bourne-1-marker {
     top: 10px;
@@ -135,6 +141,7 @@ body {
 }
 
 .token-link {
+  display: block;
   position: absolute;
   cursor: pointer;
   width: 42px; height: 42px;
@@ -142,7 +149,14 @@ body {
   background-size: 35px;
   background-repeat: no-repeat;
   background-position: center;
+
+  -webkit-transition: transform 500ms;
+  transition: transform 500ms;
 }
+  .token-link:hover {
+    -webkit-transform: scale(1.7);
+    transform: scale(1.7);
+  }
 
 .continuous-link {
   background-color: rgb(255, 75, 37);
