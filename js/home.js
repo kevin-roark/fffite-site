@@ -1,16 +1,26 @@
 
 (function() {
 
-  var descriptionEl = document.querySelector('.site-description');
-  var directionsEl = document.querySelector('.site-directions');
+  var hasHiddenDirections = false;
+  var hasHiddenDescription = false;
 
   setTimeout(function() {
-    hideElWithScaleTransition(descriptionEl, 1000);
-  }, 10000);
+    hideSiteDescription();
+  }, 15000);
 
   setTimeout(function() {
-    hideElWithScaleTransition(directionsEl, 1000);
-  }, 20000);
+    hideElWithScaleTransition(document.querySelector('.subsidiaries'), 1000);
+  }, 15000);
+
+  function hideSiteDescription() {
+    hideElWithScaleTransition(document.querySelector('.site-description'), 1000);
+    hasHiddenDescription = true;
+  }
+
+  function hideSiteDirections() {
+    hideElWithScaleTransition(document.querySelector('.site-directions'), 1000);
+    hasHiddenDirections = true;
+  }
 
   function hideElWithScaleTransition(el, transitionTime) {
     var transform = 'scale(0.15) translateX(-350px)';
@@ -71,6 +81,13 @@
 
     var color = $token.css('background-color');
     $tokenDescriptionEl.css('color', color);
+  });
+
+  $tokens.mousedown(function() {
+    if (!hasHiddenDirections) {
+      hasHiddenDirections = true;
+      setTimeout(hideSiteDirections, 2000);
+    }
   });
 
   drag($tokens);
