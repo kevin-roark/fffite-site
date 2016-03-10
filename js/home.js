@@ -74,13 +74,20 @@
   }
 
   var $tokenDescriptionEl = $('.token-description');
-  $tokens.mouseover(function() {
+  $tokens.mouseenter(function() {
     var $token = $(this);
-
-    $tokenDescriptionEl.text($token.attr('id'));
 
     var color = $token.css('background-color');
     $tokenDescriptionEl.css('color', color);
+
+    var id = $token.attr('id');
+    var scoreDescription = scoreDescriptionForID(id);
+    var mediaDescription = mediaDescriptionForID(id);
+
+    $tokenDescriptionEl.text(mediaDescription + ' — ' + scoreDescription);
+  });
+  $tokens.mouseout(function() {
+    $tokenDescriptionEl.text('');
   });
 
   $tokens.mousedown(function() {
@@ -93,6 +100,90 @@
   drag($tokens);
 
 })();
+
+function scoreDescriptionForID(id) {
+  if (id.indexOf('length') >= 0) {
+    return 'Length Pyramid';
+  }
+  if (id.indexOf('volume') >= 0) {
+    return 'Volume Pyramid';
+  }
+  if (id.indexOf('short') >= 0) {
+    return 'Rapid Clips';
+  }
+  if (id.indexOf('length') >= 0) {
+    return 'Continuous Fades';
+  }
+  return 'Continuous Shuffle';
+}
+
+function mediaDescriptionForID(id) {
+  if (id.indexOf('bourne_1_1') >= 0) {
+    return 'Bourne Identity Fight I';
+  }
+  if (id.indexOf('bourne_1_2') >= 0) {
+    return 'Bourne Identity Chase';
+  }
+  if (id.indexOf('bourne_1_3') >= 0) {
+    return 'Bourne Identity Fight II';
+  }
+  if (id.indexOf('bourne_1_4') >= 0) {
+    return 'Bourne Identity Run';
+  }
+  if (id.indexOf('bourne_1_5') >= 0) {
+    return 'Bourne Identity Fight III';
+  }
+  if (id.indexOf('bourne_1') >= 0) {
+    return 'Bourne Identity';
+  }
+
+  if (id.indexOf('bourne_2_1') >= 0) {
+    return 'Bourne Supremacy Fight';
+  }
+  if (id.indexOf('bourne_2_2') >= 0) {
+    return 'Bourne Supremacy Run';
+  }
+  if (id.indexOf('bourne_2_4') >= 0) {
+    return 'Bourne Supremacy Chase';
+  }
+  if (id.indexOf('bourne_2') >= 0) {
+    return 'Bourne Supremacy';
+  }
+
+  if (id.indexOf('bourne_3_1') >= 0) {
+    return 'Bourne Ultimatum Run I';
+  }
+  if (id.indexOf('bourne_3_3') >= 0) {
+    return 'Bourne Ultimatum Run II';
+  }
+  if (id.indexOf('bourne_3_4_run') >= 0) {
+    return 'Bourne Ultimatum Run III';
+  }
+  if (id.indexOf('bourne_3_4_fight') >= 0) {
+    return 'Bourne Ultimatum Fight';
+  }
+  if (id.indexOf('bourne_3_6') >= 0) {
+    return 'Bourne Ultimatum Chase';
+  }
+  if (id.indexOf('bourne_3_4') >= 0) {
+    return 'Bourne Ultimatum II';
+  }
+  if (id.indexOf('bourne_3') >= 0) {
+    return 'Bourne Ultimatum I';
+  }
+
+  if (id.indexOf('bourne_chase') >= 0) {
+    return 'Mixed Bourne Chase';
+  }
+  if (id.indexOf('bourne_fight') >= 0) {
+    return 'Mixed Bourne Fight';
+  }
+  if (id.indexOf('bourne_run') >= 0) {
+    return 'Mixed Bourne Run';
+  }
+
+  return 'Mixed Bourne';
+}
 
 function drag($elements, options) {
   if (!options) options = {};
