@@ -8,39 +8,6 @@ body {
   background-color: white;
 }
 
-.site-info {
-  position: absolute; top: 12px; left: 12px;
-  padding: 10px;
-  max-width: 300px;
-  background-color: white;
-  color: rgba(0, 0, 0, 0.87);
-  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
-}
-  .site-title {
-    font-family: "Times New Roman", serif;
-    font-weight: bold;
-    font-size: 24px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  }
-  .site-description {
-    margin-top: 15px;
-    font-family: sans-serif;
-    font-size: 16px;
-    line-height: 1.4;
-
-    -webkit-transition: all 1s;
-    transition: all 1s;
-  }
-  .site-directions {
-    margin-top: 12px;
-    font-family: monospace;
-    font-size: 12px;
-    line-height: 1.4;
-
-    -webkit-transition: all 1s;
-    transition: all 1s;
-  }
-
 .subsidiaries {
   position: absolute; bottom: 12px; right: 12px;
   padding: 10px;
@@ -48,7 +15,7 @@ body {
   font-size: 14px; line-height: 1.25;
   background-color: white;
   box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
+  z-index: 100000001;
 
   -webkit-transition: all 1s;
   transition: all 1s;
@@ -64,49 +31,108 @@ body {
 .social {
   position: absolute; top: 12px; right: 12px;
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.25);
+  z-index: 100000001;
 }
   .social-button {
     padding: 5px;
     text-align: right;
   }
 
-.not-chrome-fallback {
-  margin: 50px;
-  padding: 20px;
-  max-width: 600px;
+.site-info {
+  position: absolute; top: 12px; left: 12px;
+  padding: 10px;
+  max-width: 300px;
   background-color: white;
   color: rgba(0, 0, 0, 0.87);
-  font-family: "Times New Roman", serif;
-  box-shadow: 0 14px 28px rgba(255,255,255,0.25), 0 10px 10px rgba(255,255,255,0.22);
-
+  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
   display: none;
-  opacity: 0;
-
-  -webkit-transition: opacity 800ms;
-  transition: opacity 800ms;
 }
-  .not-chrome-fallback a {
+  .site-title {
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  }
+  .splash-request {
+    margin-top: 12px;
+    color: rgba(255, 0, 130, 0.87);
+    cursor: pointer;
+  }
+  .site-directions {
+    margin-top: 12px;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.4;
+
+    -webkit-transition: all 1s;
+    transition: all 1s;
+  }
+
+.site-splash {
+  position: fixed; left: 0; width: 100%; top: 0; height: 100%;
+
+  z-index: 100000000;
+  background-color: rgba(255, 255, 255, 0.5);
+
+  font-family: "Helvetica", sans-serif;
+  font-size: 18px;
+  line-height: 1.45;
+
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+  .site-splash-wrapper {
+    position: absolute;
+    top: 60px;
+    left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%);
+    max-width: 800px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0px 2px 25px 5px rgba(0, 0, 0, 0.25);
+  }
+  .site-splash p {
+    margin: 0px 0px 10px 0px; padding: 0;
+  }
+  .site-splash ul {
+    list-style: none;
+    font-size: 16px;
+    margin: 0px 0px 10px 0px; padding: 0;
+  }
+    .site-splash ul li {
+      display: inline-block;
+      margin: 15px 10px;
+    }
+  .site-splash a {
     color: rgba(255, 0, 130, 0.87);
     text-decoration: none;
   }
-    .not-chrome-fallback a:hover, .not-chrome-fallback a:focus {
+    .site-splash a:hover, .site-splash a:focus {
       text-decoration: underline;
     }
 
   .not-chrome-message {
-    font-size: 18px;
-    line-height: 1.4;
+    display: none;
+    font-weight: bold;
   }
 
-  .not-chrome-fallback ul {
-    list-style: none;
-    font-size: 16px;
-    margin: 0; padding: 0;
-  }
+  .shadow-button {
+    display: inline-block; cursor: pointer;
+    border-radius: 2px;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
-    .not-chrome-fallback ul li {
-      margin: 15px 5px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+    .shadow-button:hover, .shadow-button:focus {
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+      -webkit-transform: scale(1.4); transform: scale(1.4);
     }
+  #start-button {
+    border: 2px solid rgba(255, 0, 130, 0.87);
+  }
 
 .area-marker {
   position: absolute;

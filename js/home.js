@@ -2,20 +2,38 @@
 (function() {
 
   var hasHiddenDirections = false;
-  var hasHiddenDescription = false;
+  var hasHiddenSplashBefore = false;
+  var isShowingSplash = true;
 
-  setTimeout(function() {
-    hideSiteDescription();
-  }, 15000);
-
-  setTimeout(function() {
-    hideElWithScaleTransition(document.querySelector('.subsidiaries'), 1000);
-  }, 15000);
-
-  function hideSiteDescription() {
-    hideElWithScaleTransition(document.querySelector('.site-description'), 1000);
-    hasHiddenDescription = true;
+  var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  if (!isChrome) {
+    $('.not-chrome-message').show();
+    $('#start-button').hide();
   }
+
+  $('#start-button').click(function() {
+    if (isShowingSplash) {
+      $('.site-splash').fadeOut(500);
+      isShowingSplash = false;
+
+      if (!hasHiddenSplashBefore) {
+        $('.site-info').fadeIn(500);
+
+        setTimeout(function() {
+          hideElWithScaleTransition(document.querySelector('.subsidiaries'), 1000);
+        }, 10000);
+      }
+
+      hasHiddenSplashBefore = true;
+    }
+  });
+
+  $('.splash-request').click(function() {
+    if (!isShowingSplash) {
+      $('.site-splash').fadeIn(500);
+      isShowingSplash = true;
+    }
+  });
 
   function hideSiteDirections() {
     hideElWithScaleTransition(document.querySelector('.site-directions'), 1000);
@@ -241,7 +259,10 @@ function drag($elements, options) {
   });
 
   $(document).mouseup(function() {
-    trackingState.$activeElement.removeClass('dragging');
+    if (trackingState.$activeElement) {
+      trackingState.$activeElement.removeClass('dragging');
+    }
+
     trackingState.$activeElement = null;
   });
 
