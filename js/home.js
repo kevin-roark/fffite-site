@@ -60,15 +60,19 @@
 
     var id = $token.attr('id');
     if (id.indexOf('bourne_1') >= 0) {
+      $token.addClass('bourne-1-link');
       b1Tokens.push($token);
     }
     else if (id.indexOf('bourne_2') >= 0) {
+      $token.addClass('bourne-2-link');
       b2Tokens.push($token);
     }
     else if (id.indexOf('bourne_3') >= 0) {
+      $token.addClass('bourne-3-link');
       b3Tokens.push($token);
     }
     else {
+      $token.addClass('bourne-mixed-link');
       mixedBTokens.push($token);
     }
   });
