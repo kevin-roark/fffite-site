@@ -99,23 +99,18 @@
   });
 
   function scatter() {
-    var scatterVariation = {x: 500, y: 500};
+    $tokens.each(function() {
+      var $token = $(this);
 
-    scatterTokens(b1Tokens, {x: window.innerWidth / 2, y: 250});
-    scatterTokens(b2Tokens, {x: 250, y: window.innerHeight - 300});
-    scatterTokens(b3Tokens, {x: window.innerWidth - 250, y: window.innerHeight - 300});
-    scatterTokens(mixedBTokens, {x: window.innerWidth / 2, y: window.innerHeight / 2 + 150});
-
-    function scatterTokens(tokens, centroid) {
-      for (var i = 0; i < tokens.length; i++) {
-        var x = Math.min(window.innerWidth - 50, Math.max(0, centroid.x + Math.round((Math.random() - 0.5) * scatterVariation.x)));
-        var y = Math.min(window.innerHeight - 50, Math.max(0, centroid.y + Math.round((Math.random() - 0.5) * scatterVariation.y)));
-
-        var $token = tokens[i];
-        $token.css('left', x + 'px');
-        $token.css('top', y + 'px');
+      var x = 0, y = 0;
+      while ((x < 300 && y < 250) || (x > window.innerWidth - 120 && y < 250)) {
+        x = Math.round(Math.random() * (window.innerWidth - 50));
+        y = Math.round(Math.random() * (window.innerHeight - 50));
       }
-    }
+
+      $token.css('left', x + 'px');
+      $token.css('top', y + 'px');
+    });
   }
 
   var $tokenDescriptionEl = $('.token-description');
