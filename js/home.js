@@ -13,8 +13,10 @@
 
   $('#start-button').click(function() {
     if (isShowingSplash) {
-      $('.site-splash').fadeOut(500);
-      isShowingSplash = false;
+      $('.site-splash').addClass('transparent');
+      setTimeout(function() {
+        $('.site-splash').hide();
+      }, 501);
 
       if (!hasHiddenSplashBefore) {
         $('.site-info').fadeIn(500);
@@ -25,14 +27,27 @@
       }
 
       hasHiddenSplashBefore = true;
+      isShowingSplash = false;
     }
   });
 
   $('.splash-request').click(function() {
     if (!isShowingSplash) {
-      $('.site-splash').fadeIn(500);
+      $('.site-splash').show();
+      setTimeout(function() {
+        $('.site-splash').removeClass('transparent');
+      }, 1);
       isShowingSplash = true;
     }
+  });
+
+  var isShowingKey = false;
+  var $keyRequest = $('.key-request');
+  $keyRequest.click(function() {
+    isShowingKey = !isShowingKey;
+    $('.site-key').toggleClass('visible');
+
+    $keyRequest.text(isShowingKey ? 'Hide My Key' : 'Show Me Key');
   });
 
   function hideSiteDirections() {
@@ -149,7 +164,7 @@
     setTimeout(function() {
       $img.remove();
     }, 1500);
-  }, 2000);
+  }, 3000);
 
   // token jitter
   setInterval(function() {
