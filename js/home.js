@@ -122,8 +122,39 @@
     }
   });
 
+  // background changes
+  var backgroundIndex = 0;
+  setInterval(function() {
+    var id = ++backgroundIndex % 2 === 0 ? '#left-half-background' : '#right-half-background';
+    var $el = $(id);
+    var $img = $(id + ' img');
+
+    var src = $img.attr('src');
+    while (src === $img.attr('src')) {
+      var srcChoices = ['/media/home/bourne_1_full.png', '/media/home/bourne_2_full.png', '/media/home/bourne_3_full.png', '/media/home/bourne_mixed.png'];
+      src = srcChoices[Math.floor(Math.random() * srcChoices.length)];
+    }
+
+    var $newImg = $('<img class="transparent" src="' + src + '" />');
+    $el.append($newImg);
+
+    setTimeout(function() {
+      $newImg.removeClass('transparent');
+    }, 1);
+
+    setTimeout(function() {
+      $img.remove();
+    }, 1500);
+  }, 2000);
+
   // token jitter
   setInterval(function() {
+    for (var i = 0; i < 5; i++) {
+      jitterRandomToken();
+    }
+  }, 16);
+
+  function jitterRandomToken() {
     var $token = $($tokens[Math.floor(Math.random()*$tokens.length)]);
     if ($token.hasClass('dragging')) {
       return;
@@ -138,7 +169,7 @@
 
     $token.css('left', x + 'px');
     $token.css('top', y + 'px');
-  }, 16);
+  }
 
   drag($tokens);
 
