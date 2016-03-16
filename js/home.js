@@ -142,9 +142,11 @@
     var scoreDescription = scoreDescriptionForID(id);
     var mediaDescription = mediaDescriptionForID(id);
     $tokenDescriptionEl.text(mediaDescription + ' — ' + scoreDescription);
+
+    $tokenDescriptionEl.show();
   });
   $tokens.mouseout(function() {
-    $tokenDescriptionEl.text('');
+    $tokenDescriptionEl.hide();
   });
 
   $tokens.mousedown(function() {

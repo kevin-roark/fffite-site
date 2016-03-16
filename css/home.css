@@ -100,7 +100,7 @@ body {
   .site-key-wrapper {
     position: absolute; left: 50%; top: 50%;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color: rgba(255, 255, 255, 0.99);
     box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.25);
 
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -162,7 +162,7 @@ body {
     max-width: 800px;
     box-sizing: border-box;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color: rgba(255, 255, 255, 0.99);
     box-shadow: 0px 2px 25px 5px rgba(0, 0, 0, 0.25);
   }
   .site-splash p {
@@ -251,16 +251,24 @@ body {
   }
 
 .token-description {
+  display: none;
   position: fixed;
-  top: 10px; right: 0;
-  width: 600px;
+  top: 45%; left: 50%;
+  max-width: 1200px;
+
+  padding: 5px;
+  border-radius: 60px;
+  z-index: 100000002;
+  pointer-events: none;
+
+  font-family: "Roboto Mono", sans-serif;
+  font-size: 100px;
+  text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.29);
   text-align: center;
 
-  font-family: sans-serif;
-  font-size: 72px;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
-
-  z-index: 100000002;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .token-link {
