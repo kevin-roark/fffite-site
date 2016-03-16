@@ -43,12 +43,30 @@
 
   var isShowingKey = false;
   var $keyRequest = $('.key-request');
+  var $siteKey = $('.site-key');
   $keyRequest.click(function() {
     isShowingKey = !isShowingKey;
-    $('.site-key').toggleClass('visible');
 
-    $keyRequest.text(isShowingKey ? 'Hide My Key' : 'Show Me Key');
+    if (isShowingKey) {
+      $siteKey.css('display', 'block');
+      setTimeout(function() {
+        $siteKey.addClass('visible');
+      }, 1);
+    }
+    else {
+      hideKey();
+    }
   });
+  $siteKey.click(hideKey);
+  function hideKey() {
+    isShowingKey = false;
+    $siteKey.removeClass('visible');
+    setTimeout(function() {
+      if (!isShowingKey) {
+        $siteKey.css('display', 'none');
+      }
+    }, 250);
+  }
 
   function hideSiteDirections() {
     hideElWithScaleTransition(document.querySelector('.site-directions'), 1000);
@@ -138,7 +156,7 @@
 
   // background changes
   var backgroundIndex = 0;
-  setInterval(function() {
+  function changeBackground() {
     var id = ++backgroundIndex % 2 === 0 ? '#left-half-background' : '#right-half-background';
     var $el = $(id);
     var $img = $(id + ' img');
@@ -149,17 +167,23 @@
       src = srcChoices[Math.floor(Math.random() * srcChoices.length)];
     }
 
-    var $newImg = $('<img class="transparent" src="' + src + '" />');
+    var classChoices = ['transparent', 'transparent-rotate', 'transparent-rotate-back'];
+    var newClass = classChoices[Math.floor(Math.random() * classChoices.length)];
+
+    var $newImg = $('<img class="' + newClass + '" src="' + src + '" />');
     $el.append($newImg);
 
     setTimeout(function() {
-      $newImg.removeClass('transparent');
-    }, 1);
+      $newImg.removeClass(newClass);
+    }, 5);
 
     setTimeout(function() {
       $img.remove();
     }, 1500);
-  }, 3000);
+
+    setTimeout(changeBackground, Math.random() * 1500 + 1500);
+  }
+  changeBackground();
 
   // token jitter
   setInterval(function() {
